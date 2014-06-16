@@ -61,6 +61,30 @@ angular.module('xylidieet.controllers', [])
 
 .controller('DiaryCtrl', function($scope, diaryFactory, productFactory, $ionicModal) {
 
+	$scope.diaryInput = {};
+	$scope.diary = {};
+	
+	$scope.deleteDiaryEntry = function(diaryEntry){
+		console.log('..CONTROLLER:DIARYCTRL.. deleteDiaryEntry');
+		diaryFactory.deleteDiaryEntry(diaryEntry);
+	};
+
+	$scope.readDiary = function(){
+		console.log('..CONTROLLER:DIARYCTRL.. readDiary');
+		$scope.diaryInput.diaryDate = new Date().toJSON().substring(0,10);
+		diaryFactory.readDiary($scope.diaryInput, function (response) {
+			console.log('..CONTROLLER:DIARYCTRL.. readDiary, response: ', response);
+			if (response && response.actuals) {
+				$scope.diary = response;
+			}
+		});
+	};
+	
+	$scope.readDiary();
+})
+
+.controller('ProductsCtrl', function($scope, diaryFactory, productFactory, $ionicModal) {
+
 	$scope.categories = {};
 	$scope.product = {};
 	$scope.productDetails = {};
@@ -68,7 +92,7 @@ angular.module('xylidieet.controllers', [])
 	$scope.unitInput = {};
 
 	$scope.init = function() {
-		console.log('..CONTROLLER:DIARYCTRL.. init');
+		console.log('..CONTROLLER:PRODUCTSCTRL.. init');
 		$scope.diaryInput.diaryDate = new Date().toJSON().substring(0,10);
 		//$('#diaryDatePicker').val(new Date().toJSON().substring(0,10));
 /*
@@ -89,9 +113,9 @@ angular.module('xylidieet.controllers', [])
 	});	
 
 	$scope.readProducts = function(product) {
-		console.log('..CONTROLLER:DIARYCTRL.. readProducts: ', product);
+		console.log('..CONTROLLER:PRODUCTSCTRL.. readProducts: ', product);
 		productFactory.readProducts(product, function (response) {
-			console.log('..CONTROLLER:DIARYCTRL.. readProducts, response: ', response);
+			console.log('..CONTROLLER:PRODUCTSCTRL.. readProducts, response: ', response);
 			if (response && response.products) {
 				$scope.products = response.products;
 			}
@@ -99,9 +123,9 @@ angular.module('xylidieet.controllers', [])
 	}
 
 	$scope.readProductDetails = function(product) {
-		console.log('..CONTROLLER:DIARYCTRL.. readProductDetails: ', product);
+		console.log('..CONTROLLER:PRODUCTSCTRL.. readProductDetails: ', product);
 		productFactory.readProductDetails(product, function (response) {
-			console.log('..CONTROLLER:DIARYCTRL.. readProductDetails, response: ', response);
+			console.log('..CONTROLLER:PRODUCTSCTRL.. readProductDetails, response: ', response);
 			if (response && response.products) {
 				$scope.productDetails = response.products;
 				$scope.unitInput = $scope.productDetails.Eenheden[0];
@@ -115,28 +139,18 @@ angular.module('xylidieet.controllers', [])
 	}
 
 	$scope.createDiaryEntry = function(){
-		console.log('..CONTROLLER:DIARYCTRL.. createDiaryEntry: ');
+		console.log('..CONTROLLER:PRODUCTSCTRL.. createDiaryEntry: ');
 		var diaries = {
 			"diaryDate" : $scope.diaryInput.diaryDate,
 			"productId" : $scope.productDetails._id,
 			"totalQuantity" : $scope.unitInput.hoeveelheid * $scope.diaryInput.quantity
 		};
 		diaryFactory.createDiaryEntry(diaries, function (response) {
-			console.log('..CONTROLLER:DIARYCTRL.. createDiaryEntry, response: ', response);
+			console.log('..CONTROLLER:PRODUCTSCTRL.. createDiaryEntry, response: ', response);
 			if (response) {
 				console.log(response);
 			}
 		});	
-	};
-
-	$scope.deleteDiaryEntry = function(diaryEntry){
-		console.log('in deleteDiaryEntry function, input: ', diaryEntry);
-		diaryFactory.deleteDiaryEntry(diaryEntry);
-	};
-
-	$scope.readDiary = function(diary){
-		console.log('in readDiary function, input: ', diary);
-		diaryFactory.readDiary(diary);
 	};
 	
 	$scope.init();

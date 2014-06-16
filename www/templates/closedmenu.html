@@ -2,7 +2,6 @@
 
   <ion-pane ion-side-menu-content>
     <ion-nav-bar class="bar-positive">
-      <!--<ion-nav-back-button class="button-clear"><i class="icon ion-chevron-left"></i> Back</ion-nav-back-button>-->
     </ion-nav-bar>
     <ion-nav-view name="menuContent" animation="slide-right-left"></ion-nav-view>
   </ion-pane>
@@ -13,7 +12,11 @@
     </header>
     <ion-content class="has-header">
       <ion-list>
-        <ion-item nav-clear menu-close class="item-icon-left" href="#/app/diary">
+        <ion-item nav-clear menu-close class="item-icon-left" href="#/app/products">
+			<i class="icon ion-document-text"></i>
+			Produkt informatie
+        </ion-item>
+		<ion-item nav-clear menu-close class="item-icon-left" href="#/app/diary">
 			<i class="icon ion-document-text"></i>
 			Dagboek
         </ion-item>
@@ -27,43 +30,6 @@
         </ion-item>				
       </ion-list>
     </ion-content>
-  </ion-side-menu>
-  
-  <ion-side-menu side="right">
-    <header class="bar bar-header bar-stable">
-      <h1 class="title">Categorie</h1>
-    </header>
-    <ion-content class="has-header">
-      <ion-list>
-        <ion-item nav-clear menu-close class="item-icon-left" href="#/app/diary">
-			<i class="icon ion-document-text"></i>
-			Dagboek
-        </ion-item>
-        <ion-item nav-clear menu-close class="item-icon-left" href="#/app/settings">
-			<i class="icon ion-settings"></i>		
-			Settings
-        </ion-item>
-        <ion-item nav-clear menu-close class="item-icon-left" ng-click="deleteSession()">
-			<i class="icon ion-locked"></i>		
-			Uitloggen
-        </ion-item>				
-      </ion-list>
-    </ion-content>
-<!--
-    <ion-content class="has-header">
-      <ion-list>
-		<ul class="list">
-			<li class="item" ng-repeat="category in categories">
-				{{ category._id  }}
-				<ion-item nav-clear menu-close class="item-icon-left" href="#/app/diary">
-					<i class="icon ion-document-text"></i>
-					{{ category._id  }}
-				</ion-item>				
-			</li>
-		</ul>  
-      </ion-list>
-    </ion-content>
--->
   </ion-side-menu>
   
 </ion-side-menus>

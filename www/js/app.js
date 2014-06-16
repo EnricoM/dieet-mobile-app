@@ -63,6 +63,16 @@ angular.module('xylidieet', ['ionic', 'ngCookies', 'pickadate', 'xylidieet.contr
 	  controller: 'ClosedMenuCtrl'
     })
 	
+    .state('closed.products', {
+      url: "/products",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/products.html",
+		  controller: 'ProductsCtrl'
+        }
+      }
+    })
+
     .state('closed.diary', {
       url: "/diary",
       views: {

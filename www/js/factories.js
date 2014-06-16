@@ -160,7 +160,7 @@ angular.module('xylidieet.factories', ['xylidieet.configuration'])
 				console.log('in the diaryFactory, service readDiary:', diary);
 				$http({
 					method: 'GET',
-					url: 'diary.json',
+					url: 'http://localhost:5000/diaries?diaryDate=' + diary.diaryDate,
 					cache: false
 				}).success(callback);
 			}			
