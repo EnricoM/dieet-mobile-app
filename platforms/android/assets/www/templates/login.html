@@ -1,0 +1,43 @@
+
+<ion-view title="Foodnotes" hideBackButton="true">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+	<div class="list card" ng-model="serviceError">
+		<div ng-show="serviceError">
+			<p> {{ messageText }} </p>
+		</div>
+	</div>
+	<form novalidate="novalidate" on-valid-submit="createSession(user)">
+		<div class="list card">
+			<div class="item item-divider">
+				<span ng-hide="serviceError">Inloggen</span>
+				<span ng-show="serviceError">Er is een fout opgetreden bij het inloggen......{{ messageText }}</span>
+			</div>
+			<label class="item item-input item-stacked-label validated">
+				<span class="input-label">Email</span>
+				<input type="email" ng-model="user.email" required="required" name="email">
+				<i class="icon ion-alert-circled error"></i>
+			</label>
+			<label class="item item-input item-stacked-label validated">
+				<span class="input-label">Wachtwoord</span>
+				<input type="password" ng-model="user.pwd" name="pwd" required="required">
+				<i class="icon ion-alert-circled error"></i>
+			</label>
+			<div class="padding">
+				<button type="submit" class="button icon-right ion-chevron-right button-block button-balanced">login</button>
+			</div>
+		</div>
+	</form>
+
+	<div class="padding">
+		<a <button type="submit" class="button icon-right ion-chevron-right button-block button-stable"/>Nog geen account? Registreer</a>		
+	</div>
+	
+	<div class="padding">
+		<a <button type="submit" class="button icon-right ion-chevron-right button-block button-stable"/>Wachtwoord vergeten?</a>		
+	</div>
+	
+  </ion-content>
+</ion-view>

@@ -1,0 +1,47 @@
+<ion-view title="Settings">
+	<ion-nav-buttons side="left">
+		<button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+	</ion-nav-buttons>
+	
+	<ion-content class="has-header">
+    	<form novalidate="novalidate" on-valid-submit="createSettings(settings)">
+			<div class="list">
+				<div class="item item-divider">
+					<span ng-hide="serviceError">Settings</span>
+					<span ng-show="serviceError">Er is een fout opgetreden......{{ messageText }}</span>
+				</div>
+				<div class="range validated">
+					<i class="icon ion-woman"></i>
+					<i class="icon ion-female"></i>
+					<input type="range" name="sexe" min="0" max="1" value="0">
+					<i class="icon ion-male"></i>
+					<i class="icon ion-man"></i>
+				</div>
+				<label class="item item-input item-stacked-label validated">
+					<span class="input-label">Geboortejaar</span>
+					<input type="number" ng-model="settings.birthday" required="required" name="birthday">
+					<i class="icon ion-alert-circled error"></i>
+				</label>
+				<label class="item item-input item-stacked-label validated">
+					<span class="input-label">Lengte</span>
+					<input type="number" ng-model="settings.length" required="required" name="length">
+					<i class="icon ion-alert-circled error"></i>
+				</label>
+				<label class="item item-input item-stacked-label validated">
+					<span class="input-label">Gewicht</span>
+					<input type="number" ng-model="settings.weight" required="required" name="length">
+					<i class="icon ion-alert-circled error"></i>
+				</label>
+				<label class="item item-input item-stacked-label validated">
+					<span class="input-label">Streefgewicht</span>
+					<input type="number" ng-model="settings.desiredWeigth" required="required" name="length">
+					<i class="icon ion-alert-circled error"></i>
+				</label>
+			</div>
+
+			<div class="padding">
+				<button type="submit" class="button icon-right ion-chevron-right button-block button-balanced">Volgende</button>
+			</div>
+		</form>
+	</ion-content>
+</ion-view>

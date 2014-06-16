@@ -1,0 +1,39 @@
+<ion-view title="Foodnotes">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+	<form novalidate="novalidate" on-valid-submit="createUser(user)">
+		<div class="list card">
+			<div class="item item-divider">
+				<span ng-hide="serviceError">Registratie</span>
+				<span ng-show="serviceError">Er is een fout opgetreden......{{ messageText }}</span>
+			</div>
+			<label class="item item-input item-stacked-label validated">
+				<span class="input-label">Gebruiker</span>
+				<input type="text" ng-model="user.userName" required="required" name="userName">
+				<i class="icon ion-alert-circled error"></i>
+			</label>
+			<label class="item item-input item-stacked-label validated">
+				<span class="input-label">Email</span>
+				<input type="email" ng-model="user.email" required="required" name="email">
+				<i class="icon ion-alert-circled error"></i>
+			</label>
+			<label class="item item-input item-stacked-label validated">
+				<span class="input-label">Wachtwoord</span>
+				<input type="password" ng-model="user.pwd" name="pwd" required="required" equals="{{user.pwd2}}">
+				<i class="icon ion-alert-circled error"></i>
+			</label>
+			<label class="item item-input item-stacked-label validated">
+				<span class="input-label">Bevestig wachtwoord</span>
+				<input type="password" ng-model="user.pwd2" name="pwd2" required="required" equals="{{user.pwd}}">
+				<i class="icon ion-alert-circled error"></i>
+			</label>				
+			<div class="padding">
+				<button type="submit" class="button icon-right ion-chevron-right button-block button-balanced">Registreer</button>
+			</div>
+		</div>
+	</form>	
+  </ion-content>
+</ion-view>
+	
