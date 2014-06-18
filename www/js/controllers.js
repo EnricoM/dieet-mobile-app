@@ -1,40 +1,5 @@
 angular.module('xylidieet.controllers', [])
 
-.controller('ClosedMenuCtrl', function($scope, $cookies, $state, sessionFactory) {
-	$scope.deleteSession = function(){
-		console.log('..CONTROLLER:MENUCTRL.. deleteSession');
-		sessionFactory.deleteSession(function(response) {
-			console.log('..CONTROLLER:MENUCTRL.. deleteSession, response: ', response);
-			$state.go('open.index');
-		});
-	};
-})
-
-.controller('LoginCtrl', function($scope, $cookies, $state, sessionFactory) {
-	$scope.createSession = function(user){
-		console.log('..CONTROLLER:LOGINCTRL.. createSession, input: ', user);
-		$scope.serviceError = false;
-		sessionFactory.createSession(user, $cookies, function(response) {
-			console.log('..CONTROLLER:LOGINCTRL.. createSession, response: ', response);
-			if(response && response.messages && response.messages[0]) {
-				var message = response.messages[0];
-				switch(message.messageType) {
-					case "ERROR" : {
-						$scope.serviceError = true;
-						$scope.messageText = message.messageText;
-						break;
-					}
-					case "SUCCESS" : {
-						$scope.loggedIn = true;
-						$state.go('closed.diary');
-						break;
-					}
-				};
-			}
-		});
-	};
-})
-
 .controller('RegisterCtrl', function($scope, $cookies, $state, registrationFactory) {
 	$scope.createUser = function(user){
 		console.log('..CONTROLLER:REGISTERCTRL.. createUser, input: ', user);
